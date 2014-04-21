@@ -54,8 +54,9 @@ if [ ! `which brew` ]; then
     ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"	
 fi
 
-#########
+##<!-----------------
 # INSTALL UTILS WITH HOMEBREW
+
 ## Check if the brew-cask installed. it was diffrent to the others. :)
 if [ ! -d "/usr/local/Library/Taps/phinze-cask" ]; then
 	brew tap phinze/cask
@@ -72,7 +73,7 @@ fi
 install_util_with_brew wget
 install_util_with_brew cowsay
 install_util_with_brew sl
-#########
+##------------------>
 
 # Clone other workflow files form github.
 mkdir -p $SCRIPT_DIRECTORY/workflow && cd $SCRIPT_DIRECTORY/workflow && rm -i *
@@ -86,4 +87,15 @@ if [ !-d "/Applications/Google Chrome.app" ]; then
 fi
 if [ !-d "/Applications/QQ.app" ]; then
 	brew cask install qq
+fi
+
+##<!-----------------
+# SETUP XCODE
+
+# Config CodeSnippets & FontAndColorThemes & KeyBindings
+cp -r $SCRIPT_DIRECTORY/workflow/XcodePreference/* $HOME/Library/Developer/Xcode/UserData
+# Make brace on a single line..
+SYSTEM_SNIPPET_FILE=`find /Applications/Xcode.app -name "SystemCodeSnippets.codesnippets"`
+if [ ! -f "$SYSTEM_SNIPPET_FILE.tmp" ]; then
+	cp $SYSTEM_SNIPPET_FILE $SYSTEM_SNIPPET_FILE.tmp
 fi
