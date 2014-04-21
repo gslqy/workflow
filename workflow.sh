@@ -77,3 +77,10 @@ curl -L https://github.com/gslqy/workflow/tarball/master | tar zx -m --strip 1
 ## Terminal dictionary :)
 rm /usr/bin/dict
 ln -s $(pwd)/dict /usr/bin/dict
+
+if [ !-d "/Applications/Google Chrome.app" ]; then
+	brew cask install google-chrome
+fi
+if [ !-d "/Applications/QQ.app" ]; then
+	brew cask install qq
+fi
