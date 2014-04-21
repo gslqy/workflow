@@ -54,14 +54,17 @@ if [ ! `which brew` ]; then
     ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"	
 fi
 
-
-# Check if the brew-cask installed. it was diffrent to the others. :)
+#########
+# INSTALL UTILS WITH HOMEBREW
+## Check if the brew-cask installed. it was diffrent to the others. :)
 if [ ! -d "/usr/local/Library/Taps/phinze-cask" ]; then
 	brew tap phinze/cask
 fi
+## Intall brewcask.
 if [ ! `which brew cask` ]; then
 	install_util_with_brew brew-cask
 fi
+## Install readline
 if [ ! `which read line` ]; then
 	install_util_with_brew readline
 fi
@@ -69,7 +72,7 @@ fi
 install_util_with_brew wget
 install_util_with_brew cowsay
 install_util_with_brew sl
-
+#########
 
 # Clone other workflow files form github.
 mkdir -p $SCRIPT_DIRECTORY/workflow && cd $SCRIPT_DIRECTORY/workflow && rm -i *
