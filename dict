@@ -1,0 +1,8 @@
+#!/bin/bash
+echo "input word >> "
+
+while read -u0 words     
+     do 
+         python /usr/bin/dict.py ${words}     
+         echo "input word >>"                 
+     done 
