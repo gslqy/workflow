@@ -87,15 +87,27 @@ if [ !-d "/Applications/Google Chrome.app" ]; then
 fi
 if [ !-d "/Applications/QQ.app" ]; then
 	brew cask install qq
-fi
+i
 
 ##<!-----------------
 # SETUP XCODE
 
 # Config CodeSnippets & FontAndColorThemes & KeyBindings
 cp -r $SCRIPT_DIRECTORY/workflow/XcodePreference/* $HOME/Library/Developer/Xcode/UserData
+
 # Make brace on a single line..
 SYSTEM_SNIPPET_FILE=`find /Applications/Xcode.app -name "SystemCodeSnippets.codesnippets"`
 if [ ! -f "$SYSTEM_SNIPPET_FILE.tmp" ]; then
 	cp $SYSTEM_SNIPPET_FILE $SYSTEM_SNIPPET_FILE.tmp
+	cp SystemCodeSnippets.codesnippets $SYSTEM_SNIPPET_FILE
 fi
+
+# Install XVim
+XVIM_PLUGIN_FILE="$HOME/Library/Application Support/Developer/Shared/Xcode/Plug-ins/XVim.xcplugin"
+if [ ! -f "$XVIM_PLUGIN_FILE" ]; then
+	mkdir XVimDir && cd XVimDir && rm -i *
+	curl -L https://github.com/JugglerShu/XVim/tarball/develop | tar zx -m --strip 1
+	awk '!/GCC_ENABLE_OBJC_GC = supported;/' XVim.xcodeproj/project.pbxproj 1<> XVim.xcodeproj/project.pbxproj
+	xcodebuild -project XVim.xcodeproj -configuration release ARCHS=x86_64
+fi
+##------------------>
