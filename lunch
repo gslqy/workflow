@@ -1,0 +1,29 @@
+#!/bin/sh
+
+PROJECT="$HOME/Documents/Dev/Project"
+
+case $1 in
+	-ps)
+		open $PROJECT/PSIOS/pengsi.xcodeproj
+	;;
+	-dps)
+		cd $PROJECT/PSIOS
+	;;
+	-myssh)
+		ssh -p 22000 root@ho-ur.com
+	;;
+	-myscp)
+		case $2 in
+			-u)
+				if [ "$4" = "upload" ]; then
+					scp -P 22000 $3 root@ho-ur.com:/www/web/default/upload/
+				else
+					scp -P 22000 $3 root@ho-ur.com:$4
+				fi
+			;;
+			-d)
+				scp -P 22000 root@ho-ur.com:$3 $4
+			;;
+		esac
+	;;
+esac

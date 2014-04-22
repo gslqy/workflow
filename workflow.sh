@@ -73,21 +73,32 @@ fi
 install_util_with_brew wget
 install_util_with_brew cowsay
 install_util_with_brew sl
-##------------------>
-
-# Clone other workflow files form github.
-mkdir -p $SCRIPT_DIRECTORY/workflow && cd $SCRIPT_DIRECTORY/workflow && rm -i *
-curl -L https://github.com/gslqy/workflow/tarball/master | tar zx -m --strip 1
-## Terminal dictionary :)
-rm /usr/bin/dict
-ln -s $(pwd)/dict /usr/bin/dict
-
 if [ !-d "/Applications/Google Chrome.app" ]; then
 	brew cask install google-chrome
 fi
 if [ !-d "/Applications/QQ.app" ]; then
 	brew cask install qq
-i
+fi
+##------------------>
+
+
+# Clone other workflow files form github.
+mkdir -p $SCRIPT_DIRECTORY/workflow && cd $SCRIPT_DIRECTORY/workflow && rm -i *
+curl -L https://github.com/gslqy/workflow/tarball/master | tar zx -m --strip 1
+
+
+##<!-----------------
+# SETUP SHELL
+
+# Config shell, copy /workflow/.bash_profile to user directory.
+cp .bash_profile $HOME
+# Vim configuration..
+cp .vimrc $HOME
+## Install terminal dictionary :)
+rm /usr/bin/dict
+ln -s $(pwd)/dict /usr/bin/dict
+##------------------>
+
 
 ##<!-----------------
 # SETUP XCODE
@@ -111,3 +122,17 @@ if [ ! -f "$XVIM_PLUGIN_FILE" ]; then
 	xcodebuild -project XVim.xcodeproj -configuration release ARCHS=x86_64
 fi
 ##------------------>
+
+
+##<!-----------------
+# CONFIG WITH OPTION
+while getopts ":g" opt; 
+	do
+		case $opt in
+			g)
+				git_configuration	
+			;;
+			:)
+			;;
+		esac
+	done
