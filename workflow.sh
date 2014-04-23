@@ -42,6 +42,7 @@ function git_configuration()
 	git config --global color.branch auto  
 }
 
+
 # Download Xcode if need.
 if [ ! `which cc` ]; then
 	open "https://developer.apple.com/xcode/downloads/"
@@ -52,6 +53,8 @@ fi
 if [ ! `which brew` ]; then
 	echo "Install homebrew \n"
     ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"	
+	echo "Reopen script when brew installed"
+	#exit 0
 fi
 
 ##<!-----------------
@@ -73,17 +76,17 @@ fi
 install_util_with_brew wget
 install_util_with_brew cowsay
 install_util_with_brew sl
-if [ !-d "/Applications/Google Chrome.app" ]; then
+if [ !-e "/Applications/Google Chrome.app" ]; then
 	brew cask install google-chrome
 fi
-if [ !-d "/Applications/QQ.app" ]; then
+if [ !-e "/Applications/QQ.app" ]; then
 	brew cask install qq
 fi
 ##------------------>
 
 
 # Clone other workflow files form github.
-mkdir -p $SCRIPT_DIRECTORY/workflow && cd $SCRIPT_DIRECTORY/workflow && rm -i *
+mkdir -p $SCRIPT_DIRECTORY/workflow && cd $SCRIPT_DIRECTORY/workflow && sudo rm -rf *
 curl -L https://github.com/gslqy/workflow/tarball/master | tar zx -m --strip 1
 
 
@@ -92,11 +95,12 @@ curl -L https://github.com/gslqy/workflow/tarball/master | tar zx -m --strip 1
 
 # Config shell, copy /workflow/.bash_profile to user directory.
 cp .bash_profile $HOME
+source $HOME/.bash_profile
 # Vim configuration..
 cp .vimrc $HOME
 ## Install terminal dictionary :)
-rm /usr/bin/dict
-ln -s $(pwd)/dict /usr/bin/dict
+sudo rm /usr/bin/dict*
+sudo ln -s $(pwd)/dict /usr/bin/dict
 ##------------------>
 
 
@@ -116,8 +120,8 @@ fi
 # Install XVim
 XVIM_PLUGIN_FILE="$HOME/Library/Application Support/Developer/Shared/Xcode/Plug-ins/XVim.xcplugin"
 if [ ! -f "$XVIM_PLUGIN_FILE" ]; then
-	mkdir XVimDir && cd XVimDir && rm -i *
-	curl -L https://github.com/JugglerShu/XVim/tarball/develop | tar zx -m --strip 1
+	wget https://github.com/JugglerShu/XVim/archive/bang.zip && unzip bang.zip
+	cd bang
 	awk '!/GCC_ENABLE_OBJC_GC = supported;/' XVim.xcodeproj/project.pbxproj 1<> XVim.xcodeproj/project.pbxproj
 	xcodebuild -project XVim.xcodeproj -configuration release ARCHS=x86_64
 fi
