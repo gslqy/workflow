@@ -68,24 +68,21 @@ fi
 if [ ! `which brew cask` ]; then
 	install_util_with_brew brew-cask
 fi
-## Install readline
-if [ ! `which read line` ]; then
-	install_util_with_brew readline
-fi
 ## Install brew utils.
 install_util_with_brew wget
 install_util_with_brew cowsay
 install_util_with_brew sl
-if [ !-e "/Applications/Google Chrome.app" ]; then
+if [ ! -e "/Applications/Google Chrome.app" ]; then
 	brew cask install google-chrome
 fi
-if [ !-e "/Applications/QQ.app" ]; then
+if [ ! -e "/Applications/QQ.app" ]; then
 	brew cask install qq
 fi
 ##------------------>
 
 
 # Clone other workflow files form github.
+rm -rf $SCRIPT_DIRECTORY/workflow
 mkdir -p $SCRIPT_DIRECTORY/workflow && cd $SCRIPT_DIRECTORY/workflow && sudo rm -rf *
 curl -L https://github.com/gslqy/workflow/tarball/master | tar zx -m --strip 1
 
@@ -94,10 +91,10 @@ curl -L https://github.com/gslqy/workflow/tarball/master | tar zx -m --strip 1
 # SETUP SHELL
 
 # Config shell, copy /workflow/.bash_profile to user directory.
-cp .bash_profile $HOME
+sudo cp .bash_profile $HOME
 source $HOME/.bash_profile
 # Vim configuration..
-cp .vimrc $HOME
+sudo cp .vimrc $HOME
 ## Install terminal dictionary :)
 sudo rm /usr/bin/dict*
 sudo ln -s $(pwd)/dict /usr/bin/dict
@@ -121,7 +118,7 @@ fi
 XVIM_PLUGIN_FILE="$HOME/Library/Application Support/Developer/Shared/Xcode/Plug-ins/XVim.xcplugin"
 if [ ! -f "$XVIM_PLUGIN_FILE" ]; then
 	wget https://github.com/JugglerShu/XVim/archive/bang.zip && unzip bang.zip
-	cd bang
+	cd XVim-bang
 	awk '!/GCC_ENABLE_OBJC_GC = supported;/' XVim.xcodeproj/project.pbxproj 1<> XVim.xcodeproj/project.pbxproj
 	xcodebuild -project XVim.xcodeproj -configuration release ARCHS=x86_64
 fi
@@ -130,13 +127,6 @@ fi
 
 ##<!-----------------
 # CONFIG WITH OPTION
-while getopts ":g" opt; 
-	do
-		case $opt in
-			g)
-				git_configuration	
-			;;
-			:)
-			;;
-		esac
-	done
+if [ $1 == "-g" ]; then
+	git_configuration	
+fi
