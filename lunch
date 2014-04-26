@@ -26,4 +26,19 @@ case $1 in
 			;;
 		esac
 	;;
+	-vpn)
+		osascript <<END 
+		tell application "System Events"
+			tell current location of network preferences
+				set VPNservice to service "VPN_FIRES"
+				set isConnected to connected of current configuration of VPNservice
+				if isConnected then
+					disconnect VPNservice
+				else
+					connect VPNservice
+				end if
+			end tell
+		end tell
+END
+	;;
 esac

@@ -117,10 +117,8 @@ fi
 # Install XVim
 XVIM_PLUGIN_FILE="$HOME/Library/Application Support/Developer/Shared/Xcode/Plug-ins/XVim.xcplugin"
 if [ ! -f "$XVIM_PLUGIN_FILE" ]; then
-	wget https://github.com/JugglerShu/XVim/archive/bang.zip && unzip bang.zip
-	cd XVim-bang
-	awk '!/GCC_ENABLE_OBJC_GC = supported;/' XVim.xcodeproj/project.pbxproj 1<> XVim.xcodeproj/project.pbxproj
-	xcodebuild -project XVim.xcodeproj -configuration release ARCHS=x86_64
+	#xcodebuild -project XVim.xcodeproj -configuration release ARCHS=x86_64
+	sudo cp -r plugins/XVim.xcplugin $XVIM_PLUGIN_FILE
 fi
 ##------------------>
 
@@ -130,3 +128,4 @@ fi
 if [ $1 == "-g" ]; then
 	git_configuration	
 fi
+##------------------>
