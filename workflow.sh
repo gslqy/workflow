@@ -97,7 +97,7 @@ source $HOME/.bash_profile
 sudo cp .vimrc $HOME
 ## Install terminal dictionary :)
 sudo rm /usr/bin/dict*
-sudo ln -s $(pwd)/dict /usr/bin/dict
+sudo cp $(pwd)/dict* /usr/bin/
 ##------------------>
 
 
@@ -125,7 +125,7 @@ fi
 
 ##<!-----------------
 # CONFIG WITH OPTION
-if [ $1 == "-g" ]; then
+if [ "$1" == "-g" ]; then
 	git_configuration	
 fi
 ##------------------>

@@ -3,6 +3,6 @@ echo "input word >> "
 
 while read -u0 words     
      do 
-         python dict.py ${words}     
+         python $(pwd)/dict.py ${words}
          echo "input word >>"                 
      done 
