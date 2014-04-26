@@ -3,7 +3,7 @@ export script=$HOME/Documents/Utils/Script
 export desk=$HOME/Desktop
 export doc=$HOME/Documents
 
-alias go="source $script/lunch"
+alias go="source $script/workfow/lunch"
 
 #make the shell git prefix
 function parse_git_branch_and_add_brackets 
