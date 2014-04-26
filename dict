@@ -3,6 +3,6 @@ echo "input word >> "
 
 while read -u0 words     
      do 
-         python $(pwd)/dict.py ${words}
+         python $script/workflow/dict.py ${words}
          echo "input word >>"                 
      done 
