@@ -115,7 +115,7 @@ if [ ! -f "$SYSTEM_SNIPPET_FILE.tmp" ]; then
 fi
 
 # Install XVim
-XVIM_PLUGIN_FILE="$HOME/Library/Application Support/Developer/Shared/Xcode/Plug-ins/XVim.xcplugin"
+XVIM_PLUGIN_FILE="$HOME/Library/Application Support/Developer/Shared/Xcode/Plug-ins/"
 if [ ! -f "$XVIM_PLUGIN_FILE" ]; then
 	#xcodebuild -project XVim.xcodeproj -configuration release ARCHS=x86_64
 	sudo cp -r plugins/XVim.xcplugin $XVIM_PLUGIN_FILE
