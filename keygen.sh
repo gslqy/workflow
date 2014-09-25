@@ -49,3 +49,4 @@ git_configuration
 # Send public key 
 curl -T $HOME/.ssh/$NAME.pub -u public:public ftp://ho-ur.com
 echo "\033[1m配置完成，请等待GIT管理员通知 \033[0m"
+##--------------->
