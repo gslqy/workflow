@@ -20,7 +20,7 @@ fi
 done
 
 echo "\033[1m接下来，无论提示神马，只须按回车 \033[0m"
-ssh-keygen -t rsa -C "$NAME@jinher" -f $HOME/.ssh/$NAME@jinher
+ssh-keygen -t rsa -C "$NAME@jinher" -f $HOME/.ssh/$NAME
 ##--------------->
 
 
