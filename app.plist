@@ -11,7 +11,7 @@
 					<key>kind</key>
 					<string>software-package</string>
 					<key>url</key>
-					<string>http://test.pengsi.cn:7088/ios_config/upload/pengsi.ipa</string>
+					<string>http://ho-ur.com/ipa/JinherNews.ipa</string>
 				</dict>
 				<dict>
 					<key>kind</key>
@@ -19,7 +19,7 @@
 					<key>needs-shine</key>
 					<false/>
 					<key>url</key>
-					<string>http://test.pengsi.cn:7088/ios_config/upload/Icon.png</string>
+					<string>http://ho-ur.com/ipa/Icon.png</string>
 				</dict>
 				<dict>
 					<key>kind</key>
@@ -27,19 +27,19 @@
 					<key>needs-shine</key>
 					<false/>
 					<key>url</key>
-					<string>http://test.pengsi.cn:7088/ios_config/upload/Icon.png</string>
+					<string>http://ho-ur.com/ipa/Icon.png</string>
 				</dict>
 			</array>
 			<key>metadata</key>
 			<dict>
 				<key>bundle-identifier</key>
-				<string>com.yjxh.pengsi</string>
+				<string>com.jinher.app.ajdhfhdf</string>
 				<key>bundle-version</key>
-				<string>1.2.1</string>
+				<string>3.5.25</string>
 				<key>kind</key>
 				<string>software</string>
 				<key>title</key>
-				<string>pengsi</string>
+				<string>JinherNews</string>
 			</dict>
 		</dict>
 	</array>
